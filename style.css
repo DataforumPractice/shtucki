@@ -5,54 +5,241 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
+    background: #2d2d4b;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    color: #e0e0e0;
+    padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 40px auto;
+    background: #23233a;
+    border: 2px solid #44446b;
+    border-radius: 6px;
+    box-shadow: 0 0 24px #000a, 0 0 0 4px #23233a inset;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url('https://cdn.jsdelivr.net/gh/steampunk-icons/gear.svg') no-repeat center/contain;
+    opacity: 0.3;
+}
+.container::before {
+    top: -20px;
+    left: -20px;
+}
+.container::after {
+    bottom: -20px;
+    right: -20px;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+    display: none;
+}
+
+.books {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
 }
 
 .books .book {
-    margin-bottom: 20px;
+    flex: 1;
+    background: #23233a;
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.books .book h2 {
+    background: #1a1a2a;
+    color: #00ff00;
+    font-size: 16px;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 10px 12px;
+    border-bottom: 1px solid #44446b;
+    text-shadow: 0 0 2px #00ff00, 0 0 6px #000;
 }
 
 .playlist {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    margin: 0;
+    background: #23233a;
+}
+
+.playlist li {
+    margin: 0;
 }
 
 .playlist li button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #e0e0e0;
+    text-align: left;
+    padding: 8px 12px;
+    margin: 0;
+    background: #23233a;
     border: none;
-    border-radius: 5px;
+    border-bottom: 1px solid #44446b;
+    font-size: 15px;
+    color: #00ff00;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    letter-spacing: 1px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+    box-shadow: none;
+    position: relative;
 }
 
-.playlist li button:hover {
-    background-color: #d0d0d0;
+.playlist li button:hover,
+.playlist li button:focus {
+    background: #35355a;
+    color: #ffff00;
+}
+
+.playlist li button::before {
+    content: '';
+    display: none;
 }
 
 audio {
     width: 100%;
-    margin-top: 20px;
+    margin: 0;
+    background: #23233a;
+    border: none;
+    border-top: 2px solid #44446b;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 10px 0 0 0;
+    filter: grayscale(1) brightness(0.8) contrast(1.2);
+}
+
+/* Winamp-style details */
+.container::before {
+    content: 'WINAMP';
+    display: block;
+    background: #1a1a2a;
+    color: #ffff00;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-align: left;
+    padding: 8px 16px 6px 16px;
+    border-bottom: 2px solid #44446b;
+    box-shadow: 0 2px 6px #000a;
+}
+
+.container::after {
+    content: '';
+    display: block;
+    height: 8px;
+    background: linear-gradient(90deg, #44446b 0%, #23233a 100%);
+}
+
+.books .book:not(:last-child) {
+    border-right: 2px solid #44446b;
+}
+
+/* Playlist scrollbar styling for Winamp look */
+.playlist {
+    max-height: 320px;
+    overflow-y: auto;
+}
+.playlist::-webkit-scrollbar {
+    width: 8px;
+    background: #23233a;
+}
+.playlist::-webkit-scrollbar-thumb {
+    background: #44446b;
+    border-radius: 4px;
+}
+
+/* Winamp header and controls */
+.winamp-header {
+    background: #1a1a2a;
+    color: #ffff00;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    border-bottom: 2px solid #44446b;
+    letter-spacing: 1px;
+}
+.winamp-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 12px;
+}
+.winamp-track {
+    color: #00ff00;
+    flex: 1;
+    margin: 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.winamp-time {
+    font-family: monospace;
+    color: #00ff00;
+    min-width: 48px;
+    text-align: right;
+}
+.winamp-controls {
+    background: #23233a;
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    border-bottom: 2px solid #44446b;
+}
+.winamp-controls button {
+    background: #35355a;
+    border: 1px solid #44446b;
+    color: #ffff00;
+    font-size: 15px;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    border-radius: 2px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.winamp-controls button:hover {
+    background: #44446b;
+    color: #00ff00;
+}
+.winamp-playlist-header {
+    background: #1a1a2a;
+    color: #ffff00;
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    font-size: 15px;
+    padding: 6px 12px;
+    border-bottom: 2px solid #44446b;
+    letter-spacing: 1px;
+    margin-top: 12px;
+}
+.playlist button.active,
+.playlist button:focus {
+    background: #35355a;
+    color: #ffff00;
+    outline: none;
+}
+.track-time {
+    float: right;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 13px;
+    margin-left: 12px;
 }
